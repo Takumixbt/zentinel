@@ -1,9 +1,5 @@
 import { Radio } from 'lucide-react';
 import { Header } from '@/components/Header';
-import { Hero } from '@/components/Hero';
-import { StatsBar } from '@/components/StatsBar';
-import { ProcessSection } from '@/components/ProcessSection';
-import { TechStack } from '@/components/TechStack';
 import { Stepper } from '@/components/Stepper';
 import { ConfidentialVault } from '@/components/ConfidentialVault';
 import { ControlConsole } from '@/components/ControlConsole';
@@ -19,22 +15,11 @@ export default function App() {
     <div className="flex min-h-full flex-col">
       <Header />
       <main className="flex-1">
-        <Hero />
-
-        <StatsBar requiredRatio={z.requiredRatio} />
-
-        <ProcessSection />
-
-        {/* The live app — the payoff of the narrative. */}
         <section id="app" className="scroll-mt-20 py-16 sm:py-20">
           <div className="mx-auto max-w-6xl px-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-content-dim">
-                  <span className="h-px w-6 bg-brand/50" />
-                  The live app
-                </div>
-                <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-[2.5rem]">
+                <h2 className="max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-[2.5rem]">
                   Run an encrypted risk check yourself.
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-content-muted">
@@ -60,7 +45,6 @@ export default function App() {
               <Stepper states={z.steps} />
 
               <div className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-                {/* Controls first on mobile so the user can act; vault (payoff) second. */}
                 <div className="order-2 lg:order-1">
                   <ConfidentialVault z={z} />
                 </div>
@@ -71,8 +55,6 @@ export default function App() {
             </div>
           </div>
         </section>
-
-        <TechStack />
       </main>
       <Footer />
     </div>
