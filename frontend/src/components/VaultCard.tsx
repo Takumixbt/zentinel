@@ -1,6 +1,6 @@
-import { Lock, LockOpen } from 'lucide-react';
-import { VaultValue } from './VaultValue';
-import { cn } from '@/lib/utils';
+import { Lock, LockOpen } from "lucide-react";
+import { VaultValue } from "./VaultValue";
+import { cn } from "@/lib/utils";
 
 export function VaultCard({
   label,
@@ -20,10 +20,8 @@ export function VaultCard({
   return (
     <div
       className={cn(
-        'group relative overflow-hidden rounded-xl border p-4 transition-all duration-500',
-        revealed
-          ? 'border-brand/30 bg-brand/[0.05]'
-          : 'border-hairline bg-surface-inset/60',
+        "group relative overflow-hidden border p-4 transition-all duration-500",
+        revealed ? "border-brand/30 bg-brand/[0.05]" : "border-hairline bg-surface-inset/60",
       )}
     >
       {/* sheen sweep on reveal */}
@@ -34,36 +32,23 @@ export function VaultCard({
       )}
       <div className="mb-3 flex items-center justify-between">
         <div>
-          <div className="text-xs font-medium uppercase tracking-wider text-content-muted">
-            {label}
-          </div>
+          <div className="text-xs font-medium uppercase tracking-wider text-content-muted">{label}</div>
           <div className="text-[0.68rem] text-content-dim">{hint}</div>
         </div>
         <div
           className={cn(
-            'flex h-8 w-8 items-center justify-center rounded-lg border transition-all duration-500',
-            revealed
-              ? 'border-brand/40 bg-brand/15 text-brand'
-              : 'border-hairline bg-surface text-content-dim',
+            "flex h-8 w-8 items-center justify-center border transition-all duration-500",
+            revealed ? "border-brand/40 bg-brand/15 text-brand" : "border-hairline bg-surface text-content-dim",
           )}
         >
-          {revealed ? (
-            <LockOpen className="h-4 w-4" />
-          ) : (
-            <Lock className="h-4 w-4" />
-          )}
+          {revealed ? <LockOpen className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
         </div>
       </div>
       <VaultValue revealed={revealed} value={value} seed={seed} unit={unit} />
       <div className="mt-2.5 flex items-center gap-1.5 text-[0.68rem]">
-        <span
-          className={cn(
-            'inline-block h-1.5 w-1.5 rounded-full',
-            revealed ? 'bg-brand' : 'bg-content-dim',
-          )}
-        />
-        <span className={revealed ? 'text-brand' : 'text-content-dim'}>
-          {revealed ? 'Decrypted locally' : 'Encrypted · ciphertext on-chain'}
+        <span className={cn("inline-block h-1.5 w-1.5 rounded-full", revealed ? "bg-brand" : "bg-content-dim")} />
+        <span className={revealed ? "text-brand" : "text-content-dim"}>
+          {revealed ? "Decrypted locally" : "Encrypted · ciphertext on-chain"}
         </span>
       </div>
     </div>

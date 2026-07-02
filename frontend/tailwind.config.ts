@@ -6,50 +6,60 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', 'Inter', 'ui-sans-serif', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        sans: ['Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Figtree', 'ui-sans-serif', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        // Near-black desaturated slate canvas
-        canvas: '#07090D',
+        // White canvas, matching Ztocks' light-first structure
+        canvas: '#FFFFFF',
         surface: {
-          DEFAULT: '#0C0F16',
-          raised: '#11151E',
-          inset: '#090B11',
+          DEFAULT: '#FAFAF7',
+          raised: '#F4F3EE',
+          inset: '#EFEEE7',
         },
         hairline: {
-          DEFAULT: '#1B212E',
-          strong: '#28313F',
+          DEFAULT: '#E6E3D8',
+          strong: '#D6D2C2',
         },
         content: {
-          DEFAULT: '#E9EDF5',
-          muted: '#98A2B6',
-          dim: '#5E6879',
+          DEFAULT: '#171308',
+          muted: '#6B6455',
+          dim: '#9B9484',
         },
-        // Brand accent — cold cryptographic cyan
+        // Ink section — the one dark contrast band, echoing Ztocks' dark process section
+        ink: {
+          DEFAULT: '#0B0A06',
+          raised: '#151209',
+          hairline: 'rgba(255,255,255,0.09)',
+          content: '#F5F3EA',
+          muted: '#A39C87',
+        },
+        // The only accent color: yellow
         brand: {
-          DEFAULT: '#22D3EE',
-          soft: '#67E8F9',
-          deep: '#0E7490',
-          glow: 'rgba(34,211,238,0.16)',
+          DEFAULT: '#EAB308',
+          soft: '#FDE047',
+          deep: '#A16207',
+          glow: 'rgba(234,179,8,0.18)',
         },
+        // "Safe" reuses the accent (the good outcome glows yellow);
+        // "danger" is ink/outline, not a second hue — keeps the palette to white+yellow.
         safe: {
-          DEFAULT: '#34D399',
-          soft: '#6EE7B7',
-          deep: '#065F46',
+          DEFAULT: '#EAB308',
+          soft: '#FDE047',
+          deep: '#A16207',
         },
         danger: {
-          DEFAULT: '#FB5B78',
-          soft: '#FDA4B4',
-          deep: '#7F1D2E',
+          DEFAULT: '#171308',
+          soft: '#6B6455',
+          deep: '#0B0A06',
         },
       },
       boxShadow: {
-        glow: '0 0 0 1px rgba(34,211,238,0.35), 0 0 34px -6px rgba(34,211,238,0.5)',
-        'glow-safe': '0 0 0 1px rgba(52,211,153,0.4), 0 0 40px -8px rgba(52,211,153,0.55)',
-        'glow-danger': '0 0 0 1px rgba(251,91,120,0.4), 0 0 40px -8px rgba(251,91,120,0.55)',
-        panel: '0 24px 60px -30px rgba(0,0,0,0.9)',
+        glow: '0 0 0 1px rgba(234,179,8,0.4), 0 0 34px -6px rgba(234,179,8,0.55)',
+        'glow-safe': '0 0 0 1px rgba(234,179,8,0.4), 0 0 40px -8px rgba(234,179,8,0.55)',
+        'glow-danger': '0 0 0 1px rgba(23,19,8,0.25), 0 0 30px -10px rgba(23,19,8,0.3)',
+        panel: '0 24px 60px -30px rgba(23,19,8,0.18)',
       },
       keyframes: {
         'unlock-blur': {
@@ -66,9 +76,9 @@ export default {
           '100%': { transform: 'translateX(220%)' },
         },
         'pulse-ring': {
-          '0%': { boxShadow: '0 0 0 0 rgba(34,211,238,0.5)' },
-          '70%': { boxShadow: '0 0 0 10px rgba(34,211,238,0)' },
-          '100%': { boxShadow: '0 0 0 0 rgba(34,211,238,0)' },
+          '0%': { boxShadow: '0 0 0 0 rgba(234,179,8,0.5)' },
+          '70%': { boxShadow: '0 0 0 10px rgba(234,179,8,0)' },
+          '100%': { boxShadow: '0 0 0 0 rgba(234,179,8,0)' },
         },
         'fade-up': {
           '0%': { transform: 'translateY(8px)', opacity: '0' },

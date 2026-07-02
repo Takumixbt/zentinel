@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { fauxCipher, groupNumber } from '@/lib/utils';
+import { useEffect, useRef, useState } from "react";
+import { fauxCipher, groupNumber } from "@/lib/utils";
 
 /** Count-up for values inside the safe-integer range; instant otherwise. */
 function useCountUp(target: bigint | null, active: boolean) {
-  const [display, setDisplay] = useState<string>('');
+  const [display, setDisplay] = useState<string>("");
   const raf = useRef<number>();
 
   useEffect(() => {
@@ -37,16 +37,16 @@ export function VaultValue({
   value,
   seed,
   unit,
-  tone = 'brand',
+  tone = "brand",
 }: {
   revealed: boolean;
   value: bigint | null;
   seed: string;
   unit?: string;
-  tone?: 'brand' | 'safe';
+  tone?: "brand" | "safe";
 }) {
   const counted = useCountUp(value, revealed);
-  const toneText = tone === 'safe' ? 'text-safe' : 'text-white';
+  const toneText = tone === "safe" ? "text-safe" : "text-content";
 
   if (!revealed || value === null) {
     return (
