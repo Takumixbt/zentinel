@@ -2,25 +2,26 @@
 
 A confidential collateralization check built on [Zama's FHEVM](https://docs.zama.org/protocol). A wallet submits its
 collateral and debt figures **encrypted**. The contract computes a safe/unsafe verdict on the encrypted numbers and
-makes only that verdict publicly decryptable — the underlying collateral and debt amounts are never revealed to
-anyone but the wallet itself.
+makes only that verdict publicly decryptable — the underlying collateral and debt amounts are never revealed to anyone
+but the wallet itself.
 
-This is the private equivalent of a DeFi lending protocol's health-factor check: today that check requires your
-entire position to be public. Here, only the yes/no answer is.
+This is the private equivalent of a DeFi lending protocol's health-factor check: today that check requires your entire
+position to be public. Here, only the yes/no answer is.
 
 ## Live Deployment
 
-Deployed on **Sepolia** at [`0xaEae5C4108CcFE09b4F9846638cF053887C88B13`](https://sepolia.etherscan.io/address/0xaEae5C4108CcFE09b4F9846638cF053887C88B13).
+Deployed on **Sepolia** at
+[`0xaEae5C4108CcFE09b4F9846638cF053887C88B13`](https://sepolia.etherscan.io/address/0xaEae5C4108CcFE09b4F9846638cF053887C88B13).
 
 ## How it works
 
-1. **Submit a position** — `submitPosition(collateral, debt)`: both values are encrypted client-side before being
-   sent on-chain.
+1. **Submit a position** — `submitPosition(collateral, debt)`: both values are encrypted client-side before being sent
+   on-chain.
 2. **Compute a verdict** — `computeVerdict()`: the contract checks `collateral * 100 >= debt * requiredRatioPercent`
    entirely on ciphertext (no division needed), producing an encrypted safe/unsafe flag.
-3. **Reveal only the verdict** — the flag is marked publicly decryptable via `FHE.makePubliclyDecryptable`, so any
-   third party (e.g. a lending protocol) can read "safe" or "unsafe" without ever learning the collateral or debt
-   amounts. Those stay decryptable only by the wallet that submitted them.
+3. **Reveal only the verdict** — the flag is marked publicly decryptable via `FHE.makePubliclyDecryptable`, so any third
+   party (e.g. a lending protocol) can read "safe" or "unsafe" without ever learning the collateral or debt amounts.
+   Those stay decryptable only by the wallet that submitted them.
 
 ## Quick Start
 

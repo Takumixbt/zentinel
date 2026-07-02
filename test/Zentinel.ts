@@ -110,8 +110,6 @@ describe("Zentinel", function () {
   });
 
   it("rejects computing a verdict before a position is submitted", async function () {
-    await expect(riskGateContract.connect(signers.alice).computeVerdict()).to.be.revertedWith(
-      "no position submitted",
-    );
+    await expect(riskGateContract.connect(signers.alice).computeVerdict()).to.be.revertedWith("no position submitted");
   });
 });

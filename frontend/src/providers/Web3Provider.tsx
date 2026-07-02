@@ -20,8 +20,8 @@ export const wagmiConfig = getDefaultConfig({
 const queryClient = new QueryClient();
 
 const theme = darkTheme({
-  accentColor: "#22D3EE",
-  accentColorForeground: "#04121a",
+  accentColor: "#EAB308",
+  accentColorForeground: "#171308",
   borderRadius: "medium",
   overlayBlur: "small",
 });

@@ -5,20 +5,27 @@ import {FHE, euint64, ebool, externalEuint64} from "@fhevm/solidity/lib/FHE.sol"
 import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 
 /// @title Zentinel
+/// @author Takumixbt
 /// @notice A wallet submits its collateral and debt figures encrypted. The contract computes
 /// a safe/unsafe collateralization verdict on the encrypted numbers and makes only that verdict
 /// publicly decryptable — the underlying collateral and debt amounts are never revealed to
 /// anyone but the wallet itself.
 contract Zentinel is ZamaEthereumConfig {
-    /// @dev Required collateralization ratio, expressed as a percentage (150 = 150%).
+    /// @notice Required collateralization ratio, expressed as a percentage (150 = 150%).
     uint32 public immutable requiredRatioPercent;
 
-    mapping(address => euint64) private _collateral;
-    mapping(address => euint64) private _debt;
-    mapping(address => ebool) private _isSafe;
-    mapping(address => bool) public hasPosition;
+    mapping(address wallet => euint64 collateral) private _collateral;
+    mapping(address wallet => euint64 debt) private _debt;
+    mapping(address wallet => ebool isSafe) private _isSafe;
+    /// @notice Whether a wallet has an encrypted position on file.
+    mapping(address wallet => bool hasSubmitted) public hasPosition;
 
+    /// @notice Emitted once a wallet's encrypted collateral/debt position has been stored.
+    /// @param wallet The wallet that submitted the position.
     event PositionSubmitted(address indexed wallet);
+
+    /// @notice Emitted once a wallet's safe/unsafe verdict has been computed and published.
+    /// @param wallet The wallet the verdict was computed for.
     event VerdictComputed(address indexed wallet);
 
     constructor(uint32 _requiredRatioPercent) {
@@ -28,6 +35,9 @@ contract Zentinel is ZamaEthereumConfig {
 
     /// @notice Submit encrypted collateral and debt figures for the caller's position.
     /// @dev Overwrites any previous position for the caller.
+    /// @param collateralInput Encrypted collateral amount, produced client-side.
+    /// @param debtInput Encrypted debt amount, produced client-side.
+    /// @param inputProof Zero-knowledge proof that both ciphertexts are well-formed.
     function submitPosition(
         externalEuint64 collateralInput,
         externalEuint64 debtInput,
@@ -68,11 +78,14 @@ contract Zentinel is ZamaEthereumConfig {
     }
 
     /// @notice Returns the encrypted verdict handle for a wallet, publicly decryptable once computed.
+    /// @param wallet The wallet to look up.
     function getVerdict(address wallet) external view returns (ebool) {
         return _isSafe[wallet];
     }
 
     /// @notice Returns the caller's own encrypted collateral/debt handles (only the caller can decrypt these).
+    /// @return collateral The caller's encrypted collateral handle.
+    /// @return debt The caller's encrypted debt handle.
     function getMyPosition() external view returns (euint64 collateral, euint64 debt) {
         return (_collateral[msg.sender], _debt[msg.sender]);
     }

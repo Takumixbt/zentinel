@@ -1,6 +1,5 @@
-import { ArrowUpRight, Github } from "lucide-react";
-import { ETHERSCAN_ADDRESS_URL, GITHUB_URL, ZENTINEL_ADDRESS } from "@/lib/contract";
-import { shortAddr } from "@/lib/utils";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ETHERSCAN_ADDRESS_URL, GITHUB_URL } from "@/lib/contract";
 import { FooterField } from "@/components/FooterField";
 
 interface Col {
@@ -12,7 +11,6 @@ const COLS: Col[] = [
   {
     title: "Protocol",
     links: [
-      { label: shortAddr(ZENTINEL_ADDRESS, 6), href: ETHERSCAN_ADDRESS_URL, mono: true },
       { label: "View on Etherscan", href: ETHERSCAN_ADDRESS_URL },
       { label: "Sepolia testnet", href: "https://sepolia.etherscan.io" },
     ],
@@ -30,7 +28,6 @@ const COLS: Col[] = [
     links: [
       { label: "Zama FHEVM", href: "https://docs.zama.org/protocol" },
       { label: "Zama relayer SDK", href: "https://docs.zama.org/protocol" },
-      { label: "wagmi + RainbowKit", href: "https://wagmi.sh" },
     ],
   },
 ];
@@ -79,15 +76,10 @@ export function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-hairline py-6 text-xs text-content-dim sm:flex-row sm:items-center sm:justify-between">
           <span>&copy; {new Date().getFullYear()} Zentinel · confidential collateralization on Zama&rsquo;s FHEVM</span>
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-content-dim transition-colors hover:text-brand-deep"
-          >
-            <Github className="h-3.5 w-3.5" />
-            Takumixbt/zentinel
-          </a>
+          <span className="inline-flex items-center gap-1.5 text-content-dim">
+            <ShieldCheck className="h-3.5 w-3.5 text-brand" />
+            Built for Zama
+          </span>
         </div>
       </div>
     </footer>

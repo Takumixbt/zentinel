@@ -21,6 +21,9 @@ export default tseslint.config(
       "*.env",
       "*.log",
       "coverage.json",
+      // frontend/ is an independent Vite/React app with its own tsconfig and
+      // build/typecheck pipeline — not part of this project's ESLint scope.
+      "frontend/**",
     ],
   },
   eslint.configs.recommended,

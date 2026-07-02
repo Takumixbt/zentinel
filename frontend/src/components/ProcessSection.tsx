@@ -33,7 +33,7 @@ const CODE = `function computeVerdict() external {
 
 export function ProcessSection() {
   return (
-    <section className="bg-ink py-20 text-ink-content sm:py-28">
+    <section id="architecture" className="scroll-mt-20 bg-ink py-20 text-ink-content sm:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <div className="mb-14 flex items-center gap-3 text-sm font-mono text-ink-muted">
           <span className="h-px w-8 bg-ink-content/30" />

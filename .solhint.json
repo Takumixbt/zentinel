@@ -7,6 +7,8 @@
     "max-line-length": ["error", 120],
     "named-parameters-mapping": "warn",
     "no-console": "off",
-    "not-rely-on-time": "off"
+    "not-rely-on-time": "off",
+    "gas-custom-errors": "off",
+    "immutable-vars-naming": "off"
   }
 }

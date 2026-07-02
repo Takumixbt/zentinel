@@ -53,7 +53,7 @@ function StatCell({ stat }: { stat: Stat }) {
 
 export function StatsBar() {
   return (
-    <section className="relative border-y border-hairline py-16 sm:py-20">
+    <section id="protocol" className="relative scroll-mt-20 border-y border-hairline py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-5">
         <div className="mb-10 flex items-center gap-3 text-sm font-mono text-content-muted">
           <span className="h-px w-8 bg-content/30" />

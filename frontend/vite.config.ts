@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'node:path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "node:path";
 
 // The Zama relayer SDK ships WASM (TFHE + KMS). Excluding it from dep
 // pre-bundling lets Vite serve the WASM glue correctly, and esnext keeps
@@ -9,16 +9,16 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   optimizeDeps: {
-    exclude: ['@zama-fhe/relayer-sdk'],
+    exclude: ["@zama-fhe/relayer-sdk"],
     esbuildOptions: {
-      target: 'esnext',
+      target: "esnext",
     },
   },
   build: {
-    target: 'esnext',
+    target: "esnext",
   },
 });

@@ -13,6 +13,10 @@
     height: 100%;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-canvas text-content font-sans antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "ss01";
