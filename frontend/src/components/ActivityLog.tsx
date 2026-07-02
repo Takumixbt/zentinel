@@ -11,9 +11,13 @@ const ICON = {
 };
 
 export function ActivityLog({ items }: { items: Activity[] }) {
-  const endRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    // Scroll only this internal log container, never the page — and skip
+    // the initial empty mount so there's nothing to jump to on page load.
+    if (items.length === 0) return;
+    const el = containerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [items]);
 
   return (
@@ -22,7 +26,7 @@ export function ActivityLog({ items }: { items: Activity[] }) {
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
         Activity
       </div>
-      <div className="max-h-56 space-y-1.5 overflow-y-auto pr-1">
+      <div ref={containerRef} className="max-h-56 space-y-1.5 overflow-y-auto pr-1">
         {items.length === 0 ? (
           <p className="px-1 py-6 text-center text-sm text-content-dim">
             Your on-chain and cryptographic steps will appear here.
@@ -62,7 +66,6 @@ export function ActivityLog({ items }: { items: Activity[] }) {
             );
           })
         )}
-        <div ref={endRef} />
       </div>
     </div>
   );
