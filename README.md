@@ -16,19 +16,19 @@ position to be public. Here, only the yes/no answer is.
 
 ## How it works
 
-1. **Encrypt & submit** — `submitPosition(collateral, debt)`: both values are encrypted client-side in the browser
-   (via Zama's relayer SDK) before being sent on-chain as ciphertext plus a zero-knowledge input proof. The plaintext
-   never touches the network.
+1. **Encrypt & submit** — `submitPosition(collateral, debt)`: both values are encrypted client-side in the browser (via
+   Zama's relayer SDK) before being sent on-chain as ciphertext plus a zero-knowledge input proof. The plaintext never
+   touches the network.
 2. **Compute a verdict** — `computeVerdict()`: the contract checks `collateral * 100 >= debt * requiredRatioPercent`
    entirely on ciphertext (no division needed), producing an encrypted safe/unsafe flag.
-3. **Reveal only the verdict** — the flag is marked publicly decryptable via `FHE.makePubliclyDecryptable`, so any
-   third party (e.g. a lending protocol) can read "safe" or "unsafe" without ever learning the collateral or debt
-   amounts. Those stay decryptable only by the wallet that submitted them.
+3. **Reveal only the verdict** — the flag is marked publicly decryptable via `FHE.makePubliclyDecryptable`, so any third
+   party (e.g. a lending protocol) can read "safe" or "unsafe" without ever learning the collateral or debt amounts.
+   Those stay decryptable only by the wallet that submitted them.
 
 ## Frontend
 
-A Vite + React app in [`frontend/`](frontend) drives the real Sepolia contract end-to-end: connect a wallet, encrypt
-and submit a position, compute the verdict, and reveal it — one encrypted step at a time. Built with React, wagmi +
+A Vite + React app in [`frontend/`](frontend) drives the real Sepolia contract end-to-end: connect a wallet, encrypt and
+submit a position, compute the verdict, and reveal it — one encrypted step at a time. Built with React, wagmi +
 RainbowKit for wallet connection, and Zama's `@zama-fhe/relayer-sdk` for client-side encryption/decryption.
 
 ```bash
@@ -82,5 +82,5 @@ Contract + mock-FHEVM test suite passing (6/6). Deployed live on Sepolia. Fronte
 ## Built with
 
 [FHEVM](https://github.com/zama-ai/fhevm) by Zama, scaffolded from
-[fhevm-hardhat-template](https://github.com/zama-ai/fhevm-hardhat-template). Frontend built with React, Vite,
-Tailwind CSS, wagmi, RainbowKit, and Zama's relayer SDK.
+[fhevm-hardhat-template](https://github.com/zama-ai/fhevm-hardhat-template). Frontend built with React, Vite, Tailwind
+CSS, wagmi, RainbowKit, and Zama's relayer SDK.
