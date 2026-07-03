@@ -146,7 +146,7 @@ export function ProcessSection() {
             ))}
           </div>
 
-          <div className="border border-ink-hairline bg-ink-raised lg:sticky lg:top-24 lg:self-start">
+          <div className="min-w-0 border border-ink-hairline bg-ink-raised lg:sticky lg:top-24 lg:self-start">
             <div className="flex items-center justify-between border-b border-ink-hairline px-4 py-3">
               <div className="flex gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full border border-ink-content/20" />
