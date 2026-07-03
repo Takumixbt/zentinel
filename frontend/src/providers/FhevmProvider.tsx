@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { initSDK, createInstance, SepoliaConfig, type FhevmInstance } from "@zama-fhe/relayer-sdk/web";
 import { CHAIN_ID } from "@/lib/contract";
 
@@ -18,12 +18,11 @@ export function FhevmProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<FhevmStatus>("idle");
   const [error, setError] = useState<string | null>(null);
   const [nonce, setNonce] = useState(0);
-  const startedRef = useRef(false);
 
   useEffect(() => {
-    // Guard React 18 StrictMode double-invoke; allow explicit retry via nonce.
-    if (startedRef.current && nonce === 0) return;
-    startedRef.current = true;
+    // Each invocation owns its own `cancelled` flag, so React 18 StrictMode's
+    // dev-only double-invoke can safely discard the first run's stale result
+    // without blocking the second (surviving) run from ever completing.
     let cancelled = false;
 
     (async () => {
