@@ -1,6 +1,9 @@
 # fhevm
 fhevmTemp
 
+# local tooling
+.claude
+
 # directories
 .coverage_artifacts
 .coverage_cache
